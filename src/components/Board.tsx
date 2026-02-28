@@ -9,6 +9,7 @@ interface BoardProps {
   setWordSelection: React.Dispatch<React.SetStateAction<{ x: number, y: number }[]>>;
   tryWord: (selection?: { x: number, y: number }[]) => void;
   gameOver: boolean;
+  setColumn: (x: number) => void;
 }
 
 const Board: React.FC<BoardProps> = ({
@@ -17,7 +18,8 @@ const Board: React.FC<BoardProps> = ({
   wordSelection,
   setWordSelection,
   tryWord,
-  gameOver
+  gameOver,
+  setColumn
 }) => {
   const currentSelectionRef = useRef<{ x: number, y: number }[]>([]);
 
@@ -51,7 +53,12 @@ const Board: React.FC<BoardProps> = ({
 
   // Handle cell click
   const handleCellClick = (x: number, y: number) => {
-    if (gameOver || grid[y][x] === null) return;
+    if (gameOver) return;
+
+    if (grid[y][x] === null) {
+      setColumn(x);
+      return;
+    }
 
     const selection = currentSelectionRef.current;
 

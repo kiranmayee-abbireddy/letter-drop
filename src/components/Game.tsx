@@ -167,29 +167,40 @@ const Game: React.FC<GameProps> = ({ rows, cols }) => {
   // Touch controls
   useEffect(() => {
     let touchStartX = 0;
+    let touchStartY = 0;
 
     const handleTouchStart = (e: TouchEvent) => {
       if (!activeLetter || paused || gameOver) return;
       touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (!activeLetter || paused || gameOver) return;
       const touchCurrentX = e.touches[0].clientX;
-      const diff = touchCurrentX - touchStartX;
+      const touchCurrentY = e.touches[0].clientY;
 
-      if (diff > 30) {
+      const diffX = touchCurrentX - touchStartX;
+      const diffY = touchCurrentY - touchStartY;
+
+      // Detect swipe down
+      if (diffY > 40 && Math.abs(diffY) > Math.abs(diffX)) {
+        dropActiveLetter();
+        touchStartY = touchCurrentY; // Reset to avoid multiple drops
+      }
+      // Detect swipe horizontal
+      else if (diffX > 30) {
         moveActiveLetter(1);
         touchStartX = touchCurrentX;
-      } else if (diff < -30) {
+      } else if (diffX < -30) {
         moveActiveLetter(-1);
         touchStartX = touchCurrentX;
       }
     };
 
     const handleTouchEnd = () => {
-      if (!activeLetter || paused || gameOver) return;
-      dropActiveLetter();
+      // We don't drop automatically on touch end anymore,
+      // it's handled by tracking swipe vertical distance in move
     };
 
     if (boardRef.current) {
@@ -292,6 +303,11 @@ const Game: React.FC<GameProps> = ({ rows, cols }) => {
             setWordSelection={setWordSelection}
             tryWord={tryWord}
             gameOver={gameOver}
+            setColumn={(x) => {
+              if (activeLetter && !paused && grid[activeLetter.y][x] === null) {
+                setActiveLetter({ ...activeLetter, x });
+              }
+            }}
           />
         </div>
       </div>

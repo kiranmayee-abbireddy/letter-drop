@@ -8,7 +8,7 @@ interface TutorialProps {
 const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70 backdrop-blur-sm">
-      <div className="bg-gradient-to-b from-purple-800 to-indigo-900 p-6 rounded-xl shadow-lg w-full max-w-sm mx-4 relative">
+      <div className="bg-gradient-to-b from-purple-800 to-indigo-900 p-6 rounded-xl shadow-lg w-full max-w-sm mx-4 relative max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-white hover:text-purple-300"
@@ -30,7 +30,7 @@ const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
                   <ArrowRight size={16} />
                 </div>
               </div>
-              <span>Move falling letter left/right</span>
+              <span>Drag falling letter or tap an empty column</span>
             </div>
             <div className="flex items-center mb-2">
               <div className="w-8 h-8 flex items-center justify-center bg-purple-700 rounded mr-2">
