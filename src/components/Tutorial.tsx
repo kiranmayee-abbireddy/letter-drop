@@ -9,15 +9,15 @@ const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70 backdrop-blur-sm">
       <div className="bg-gradient-to-b from-purple-800 to-indigo-900 p-6 rounded-xl shadow-lg w-full max-w-sm mx-4 relative">
-        <button 
+        <button
           onClick={onClose}
           className="absolute top-2 right-2 text-white hover:text-purple-300"
         >
           <X size={24} />
         </button>
-        
+
         <h2 className="text-2xl font-bold text-white text-center mb-6">How to Play</h2>
-        
+
         <div className="space-y-6 text-purple-100">
           <div>
             <h3 className="font-bold text-white mb-2">Controls</h3>
@@ -42,10 +42,10 @@ const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
               <div className="w-8 h-8 flex items-center justify-center bg-purple-700 rounded mr-2">
                 <MousePointer size={16} />
               </div>
-              <span>Click and drag to select letters</span>
+              <span>Click consecutive adjacent letters, then click the last one again to submit word</span>
             </div>
           </div>
-          
+
           <div>
             <h3 className="font-bold text-white mb-2">Game Rules</h3>
             <ul className="list-disc pl-5 space-y-2">
@@ -58,7 +58,7 @@ const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
               <li>Game ends if the stack reaches the top</li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="font-bold text-white mb-2">Scoring</h3>
             <ul className="list-disc pl-5 space-y-1">
@@ -69,7 +69,7 @@ const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
             </ul>
           </div>
         </div>
-        
+
         <div className="mt-6">
           <button
             onClick={onClose}
