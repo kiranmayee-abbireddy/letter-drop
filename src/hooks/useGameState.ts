@@ -19,7 +19,7 @@ export const useGameState = (rows: number, cols: number) => {
   const [nextLetter, setNextLetter] = useState<string>(generateNextLetter(1));
   const [activeLetter, setActiveLetter] = useState<LetterPosition | null>(null);
   const [gameOver, setGameOver] = useState<boolean>(false);
-  const [paused, setPaused] = useState<boolean>(false);
+  const [paused, setPaused] = useState<boolean>(true);
   const [wordSelection, setWordSelection] = useState<{ x: number, y: number }[]>([]);
   const [message, setMessage] = useState<string | null>(null);
 

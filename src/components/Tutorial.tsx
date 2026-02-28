@@ -21,8 +21,8 @@ const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
         <div className="space-y-6 text-purple-100">
           <div>
             <h3 className="font-bold text-white mb-2">Controls</h3>
-            <div className="flex items-center mb-2">
-              <div className="flex space-x-1 mr-2">
+            <div className="flex items-center mb-3">
+              <div className="flex space-x-1 mr-3 flex-shrink-0">
                 <div className="w-8 h-8 flex items-center justify-center bg-purple-700 rounded">
                   <ArrowLeft size={16} />
                 </div>
@@ -30,19 +30,19 @@ const Tutorial: React.FC<TutorialProps> = ({ onClose }) => {
                   <ArrowRight size={16} />
                 </div>
               </div>
-              <span>Drag falling letter or tap an empty column</span>
+              <span className="leading-snug">Drag letter or tap an empty column to move</span>
             </div>
-            <div className="flex items-center mb-2">
-              <div className="w-8 h-8 flex items-center justify-center bg-purple-700 rounded mr-2">
+            <div className="flex items-center mb-3">
+              <div className="w-8 h-8 flex items-center justify-center bg-purple-700 rounded mr-3 flex-shrink-0">
                 <ArrowDown size={16} />
               </div>
-              <span>Drop letter faster</span>
+              <span className="leading-snug">Press down arrow or swipe down to drop faster</span>
             </div>
-            <div className="flex items-center">
-              <div className="w-8 h-8 flex items-center justify-center bg-purple-700 rounded mr-2">
+            <div className="flex items-center mb-2">
+              <div className="w-8 h-8 flex items-center justify-center bg-purple-700 rounded mr-3 flex-shrink-0">
                 <MousePointer size={16} />
               </div>
-              <span>Click consecutive adjacent letters, then click the last one again to submit word</span>
+              <span className="leading-snug">Tap/Click consecutive adjacent letters, then tap the last one again to submit word</span>
             </div>
           </div>
 

@@ -37,7 +37,7 @@ const Game: React.FC<GameProps> = ({ rows, cols }) => {
   } = useGameState(rows, cols);
 
   const [muted, setMuted] = useState(true);
-  const [showTutorial, setShowTutorial] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(true);
   const intervalRef = useRef<number | null>(null);
   const boardRef = useRef<HTMLDivElement>(null);
 
@@ -255,7 +255,10 @@ const Game: React.FC<GameProps> = ({ rows, cols }) => {
             </button>
             <button
               className="text-white hover:text-purple-300 transition-colors"
-              onClick={() => setShowTutorial(true)}
+              onClick={() => {
+                setPaused(true);
+                setShowTutorial(true);
+              }}
               aria-label="Show tutorial"
             >
               <HelpCircle size={20} />
@@ -313,7 +316,10 @@ const Game: React.FC<GameProps> = ({ rows, cols }) => {
       </div>
 
       {gameOver && <GameOver score={score} resetGame={resetGame} />}
-      {showTutorial && <Tutorial onClose={() => setShowTutorial(false)} />}
+      {showTutorial && <Tutorial onClose={() => {
+        setShowTutorial(false);
+        setPaused(false);
+      }} />}
     </div>
   );
 };
